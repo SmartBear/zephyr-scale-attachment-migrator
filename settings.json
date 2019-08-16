@@ -1,0 +1,14 @@
+{
+	"sourceJira": {
+		"url": "",
+		"user": "",
+		"password": ""
+	},
+	"targetJira": {
+		"url": "",
+		"user": "",
+		"password": "",
+		"projectKey": "",
+		"issueKeyCustomField": ""
+	}
+}
