@@ -31,7 +31,9 @@ Example:
 ```
 
 2) Open a terminal window, and navigate to the directory where the repository has been cloned to: ``cd <tm4j-file-converter-dir>``.
+
 3) Install the Javascript dependencies by executing: ``npm install``.
+
 4) Run the migration by executing: ``npm start``.
 
 All the process will be logged on the console and the images automatically uploaded to TM4J.
