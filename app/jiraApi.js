@@ -44,16 +44,22 @@ class JiraApi {
 
 	async _downloadAttachment(issueKey, attachment) {
 		const imagesDir = `./images/${issueKey}`;
-		if(fs.existsSync(imagesDir)) {
-			// Images had already been downloaded, no need to download again
+		const filePath = `${imagesDir}/${attachment.filename}`;
+
+		const fileHasBeenDownloaded = fs.existsSync(filePath);
+		if (fileHasBeenDownloaded) {
 			return;
 		}
-		fs.mkdirSync(imagesDir);
+
+		const folderExist = fs.existsSync(imagesDir);
+		if (!folderExist) {
+			fs.mkdirSync(imagesDir);
+		}
 
 		const response = await fetch(attachment.content, HttpUtils.getAuthHeader(this.jiraSettings.user, this.jiraSettings.password));
 
         await new Promise((resolve, reject) => {
-        	const dest = fs.createWriteStream(`${imagesDir}/${attachment.filename}`);
+        	const dest = fs.createWriteStream(filePath);
 			response.body.pipe(dest);
 			response.body.on('error', err => {
 				reject(err);
